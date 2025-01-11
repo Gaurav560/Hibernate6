@@ -1,7 +1,7 @@
 package com.telusko.app;
 
 import com.telusko.model.Student;
-import org.h2.tools.Server;
+import com.telusko.model.StudentName;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -12,11 +12,6 @@ import java.sql.SQLException;
 
 public class LaunchFirstApp {
     public static void main(String[] args) throws SQLException {
-
-
-        // starting a h2 server
-        Server h2Server = Server.createWebServer("-web", "-webAllowOthers", "-webPort", "8082").start();
-        System.out.println("H2 Console started at: http://localhost:8082");
 
 
         // Declare all required Hibernate objects as null initially
@@ -37,10 +32,18 @@ public class LaunchFirstApp {
         // Step 3: Open a new Session - lightweight object, created per operation
         session = sessionFactory.openSession();
 
+        // Create StudentName object and set its properties
+        StudentName studentName = new StudentName();
+        studentName.setfName("Navin");
+        studentName.setmName("Thala");
+        studentName.setlName("Reddy");
+
+
+
         // Create Student object and set its properties
         Student student = new Student();
-        student.setSid(103);
-        student.setsName("Raj");
+        student.setSid(111);
+        student.setsName(studentName);
         student.setsCity("Pune");
 
         try {
